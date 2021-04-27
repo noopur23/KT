@@ -15,6 +15,7 @@ import { getAllData, selectFilteredData } from '../store/comment.selectors';
 })
 export class CommentComponent implements OnInit {
   comment$ :Observable<rootState>;
+  //searchString = "";
   //data:Comment[] = [];
   //data:Comment[];
   data$:Observable<Comment[]>;
