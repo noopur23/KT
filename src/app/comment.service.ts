@@ -9,8 +9,8 @@ import {Comment} from './comment.model';
   providedIn: 'root'
 })
 export class CommentService {
-  //private url = "https://jsonplaceholder.typicode.com/comments";
-  private url = 'http://localhost:3000/comments';
+  private url = "https://jsonplaceholder.typicode.com/comments";
+  //private url = 'http://localhost:3000/comments';
 
   getComments() {
     return this.http.get(this.url);

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { CommentService } from '../comment.service';
-import { ApiGetData , ApiSuccess, API_GET_DATA } from './comment.action';
+import { ApiGetData , ApiSuccess,  } from './comment.action';
 import { catchError, exhaustMap, map } from 'rxjs/operators';
 //import { of } from 'rxjs';
 
@@ -11,10 +11,10 @@ export class RootEffects {
 
   get$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(API_GET_DATA),
+      ofType(ApiGetData),
       exhaustMap(() =>
           this.commentService.getComments().pipe(
-            map(response => new ApiSuccess(response))
+            map(response => ApiSuccess({data : response}))
           )
         )
       )

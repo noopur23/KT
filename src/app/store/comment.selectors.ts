@@ -3,7 +3,7 @@ import {rootState } from '../app.state';
 
 
 export const getState = (state:any) => state;
-export const getData = (state:rootState) => state.data;
+//export const getData = (state:rootState) => state.data;
 
 
 export const getAllData = createSelector( getState,(state) => {return state.comment.data;} );

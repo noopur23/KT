@@ -1,25 +1,13 @@
 import { createReducer, on, Action, ActionType } from '@ngrx/store';
 import { rootState } from '../app.state';
 import {Comment} from '../comment.model';
-import {ActionTypes,API_GET_DATA,API_SUCCESS_ACTION} from './comment.action';
+import {ApiGetData,ApiSuccess} from './comment.action';
 
 export const initialState: rootState = {
   data : []
 };
 
-  export const commentReducer = (state = initialState,action: ActionTypes) => {
-    switch(action.type) {
-      case API_GET_DATA:
-      {
-        return state;
-      }
-      case API_SUCCESS_ACTION:
-      {
-        let newstate = {data: action.payload};
-        return newstate;
-      }
-      default:
-        return state;
-    }
-  };
-
+export const commentReducer = createReducer(
+  initialState,
+  on(ApiGetData, (state) => ({data : state.data})),
+  on(ApiSuccess, (state,action) => ({data : action.data})));

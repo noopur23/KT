@@ -24,7 +24,7 @@ export class CommentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(new ApiGetData());
+    this.store.dispatch(ApiGetData());
     this.data$ = this.store.select(getAllData);
   }
 }
