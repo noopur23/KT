@@ -5,7 +5,7 @@ import { Comment } from '../comment.model';
 import { ApiGetData , ApiSuccess } from '../store/comment.action';
 import { rootState } from '../app.state';
 import {initialState } from '../store/comment.reducer';
-import { subscribeOn, take } from 'rxjs/operators';
+import { debounceTime, subscribeOn, take } from 'rxjs/operators';
 import { getAllData, selectFilteredData } from '../store/comment.selectors';
 
 @Component({
@@ -15,30 +15,16 @@ import { getAllData, selectFilteredData } from '../store/comment.selectors';
 })
 export class CommentComponent implements OnInit {
   comment$ :Observable<rootState>;
-  //searchString = "";
-  //data:Comment[] = [];
-  //data:Comment[];
   data$:Observable<Comment[]>;
 
-  constructor(private store: Store<rootState>,private state:State<rootState>){
-
-    //this.data$ = of(this.state.getValue().comment.data);
-  }
+  constructor(private store: Store<rootState>,private state:State<rootState>){}
 
   filtercomment(searchString){
-    this.data$ = this.store.select(selectFilteredData,searchString);
-   // this.data$ = of(this.state.getValue().comment.data);
-   // console.log(searchString);
-   // this.data$ = this.store.select(getFilter,searchString);
-   // this.data$.subscribe(s => console.log(s));
+    this.data$ = this.store.select(selectFilteredData,searchString).pipe(debounceTime(2000));
   }
 
   ngOnInit(): void {
     this.store.dispatch(new ApiGetData());
-    //this.data$ = this.store.select(getAllData);
     this.data$ = this.store.select(getAllData);
-    //this.data$ = of(this.state.getValue().comment.data);
-
-    this.data$.subscribe(s=>console.log(s));
   }
 }

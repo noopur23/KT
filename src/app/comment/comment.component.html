@@ -1,11 +1,7 @@
 <h2>Comments</h2>
-<input type="text" #filter placeholder="Filter String">
-<button (click)="filtercomment(filter.value)">Filter Now</button>
+<input type="text" #filter placeholder="Filter String" (keyup)="filtercomment(filter.value)">
 <div *ngIf="data$ |async as comments">
   <div *ngFor="let comment of comments">
-
-<!--<div *ngIf="data as comments">
-<div *ngFor="let comment of data">-->
   <ul>
     <li>
       {{comment.name}} //// {{comment.email}}

@@ -19,20 +19,4 @@ export class RootEffects {
         )
       )
     );
-
-    //constructor(private actions$: Actions, private apiCallsService: ApiCallsService) {}
   }
-/*
-  get$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(ApiGetData),
-      exhaustMap(action =>
-        this.commentService.getComments().pipe(
-          map(response => ApiSuccess({data:response}))
-          ))
-      )
-    );
-
-
-}
-*/
