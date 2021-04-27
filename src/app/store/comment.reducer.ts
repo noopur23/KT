@@ -15,7 +15,7 @@ export const initialState: rootState = {
       }
       case API_SUCCESS_ACTION:
       {
-        let newstate = action.payload;
+        let newstate = {data: action.payload};
         return newstate;
       }
       default:

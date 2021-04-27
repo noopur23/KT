@@ -13,18 +13,7 @@ export class CommentService {
   private url = 'http://localhost:3000/comments';
 
   getComments() {
-    //const headers = new HttpHeaders({'Content-Type' : 'application/json'});
-    //const options = {headers};
     return this.http.get(this.url);
-    /*.pipe(
-    //return this.http.get(this.url).pipe(
-      map((response: Response) => response),
-      catchError(err => {
-        console.log(err);
-        return of([]);
-      })
-
-  );*/
   }
 
   constructor (private http:HttpClient){}

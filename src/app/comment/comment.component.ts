@@ -20,10 +20,12 @@ export class CommentComponent implements OnInit {
   data$:Observable<Comment[]>;
 
   constructor(private store: Store<rootState>,private state:State<rootState>){
+
     //this.data$ = of(this.state.getValue().comment.data);
   }
 
   filtercomment(searchString){
+    this.data$ = this.store.select(selectFilteredData,searchString);
    // this.data$ = of(this.state.getValue().comment.data);
    // console.log(searchString);
    // this.data$ = this.store.select(getFilter,searchString);
@@ -32,11 +34,10 @@ export class CommentComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(new ApiGetData());
+    //this.data$ = this.store.select(getAllData);
     this.data$ = this.store.select(getAllData);
     //this.data$ = of(this.state.getValue().comment.data);
 
     this.data$.subscribe(s=>console.log(s));
   }
 }
-
-
